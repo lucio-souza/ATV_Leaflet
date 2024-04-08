@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="style.css">
+    <title>ATV-BD2</title>
+</head>
+<body>
+    <header>
+        <h1>Formulário</h1>
+    </header>
+    <main>
+        <section class="section">
+            <div id="map"></div>
+            <Form action="index.js" class="form">
+                <div class="input">
+                    <p>nome</p>
+                    <input type="text" placeholder="Digite seu nome" id="nome">
+                </div>
+                <div class="input">
+                    <p>Idade</p>
+                    <input type="text"  placeholder="Digite sua idade" id="idade">
+                </div>
+                <div class="input">
+                    <p>email</p>
+                    <input type="text" placeholder="Digite seu email" id="email">
+                </div>
+                <button type="submit" id="button">enviar</button>
+            </Form>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
