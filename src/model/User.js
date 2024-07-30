@@ -3,9 +3,9 @@ const {DataTypes}=require("sequelize")
 
 const User=sequelize.define("Usuario",{
     id:{
-        type:DataTypes.UUID,        
+        type:DataTypes.UUID ,        
         primaryKey:true,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue:DataTypes.UUIDV4
 
     },
     nome:{
