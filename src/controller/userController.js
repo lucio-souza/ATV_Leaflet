@@ -8,13 +8,43 @@ const createUser=async(req,res)=>{
         res.status(404).send("error ao criar usuario")
     }
 }
-const findUser=async(req,res)=>{
+const findUsers=async(req,res)=>{
     try{
-        const user=await User.findAll();
-        res.json(user)
+        const users=await User.findAll();
+        res.json(users)
     }catch(e){
         console.log(e);
     }
 }
+const findUserById=async(req,res)=>{
+    try {
+        const user=await User.findByPk(req.params.id);
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error:"usuario não existe"})
+    }
+}
+const updateUser=async(req,res)=>{
+    const {nome,idade,localizacao}=req.body;
+    try {
+        const user=await User.findByPk(req.params.id);
+        user.nome=nome;
+        user.idade=idade;
+        user.localizacao=localizacao;
+        await user.save();
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(404).json({error:"erro ao atualizar usuario"})
+    }
+}
+const deleteUser=async(req,res)=>{
+    try {
+        const user=await User.findByPk(req.params.id);
+        await user.destroy(user);
+        await findUsers(req,res);
+    } catch (error) {
+        res.status(404).json({erro:"usuario inexistente"});
+    }
+}
 
-module.exports={createUser,findUser};
+module.exports={createUser,findUsers,findUserById,updateUser,deleteUser};

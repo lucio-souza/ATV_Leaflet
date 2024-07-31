@@ -1,13 +1,21 @@
-const express=require("express");
+const express = require('express');
 require('dotenv').config();
-const app=express();
-app.use(express.json());
-const port=process.env.port;
+const cors = require('cors');
+const { router } = require('./src/routes/userRouters');
 
-const {router}=require('./src/routes/userRouters');
+const app = express();
+const port = process.env.port;
 
-app.use("/users",router);
 
-app.listen(port,()=>{
-    console.log("servidor online");
-})
+let corsOptions = {
+  origin: ['http://127.0.0.1:5500']
+};
+
+app.use(cors(corsOptions));
+app.use(express.json()); 
+
+app.use('/users',router);
+
+app.listen(port, () => {
+  console.log(`Servidor online na porta ${port}`);
+});
