@@ -10,16 +10,18 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-    <link rel="stylesheet" href="./src/style/style.css">
+    <link rel="stylesheet" href="./src/view/style/style.css">
     <title>ATV-BD2</title>
 </head>
 <body>
     <header>
-        <h1>Formulário</h1>
+        <a class="links" href="./index.html">cadastro</a>
+        <a class="links" href="./src/view/users.html">usuarios</a>
     </header>
     <main>
         <section class="section">
             <div id="map"></div>
+            
             <Form action="index.js" class="form">
                 <div class="input">
                     <p>nome</p>
@@ -37,6 +39,6 @@
             </Form>
         </section>
     </main>
-    <script src="./src/js/script.js"></script>
+    <script src="./src/view/js/script.js"></script>
 </body>
 </html>
