@@ -70,3 +70,24 @@ header{
 #button:active {
     background-color: rgb(0, 84, 135);
 }
+
+.tabela{
+    margin-top: 100px;
+    border-collapse: collapse;
+    border:solid 1px #101822;
+}
+
+.cabecalho-tabela th{
+    padding: 10px;
+    background-color: #5dade2;
+    box-sizing: border-box;
+    width: 300px;
+    text-align: center;
+    border:solid 1px #101822;
+}
+
+#dados td{
+    border:solid 1px #101822;
+    background-color:  #ccd1d1 ;
+    text-align: center;
+}

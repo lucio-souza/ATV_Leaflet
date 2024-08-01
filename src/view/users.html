@@ -4,8 +4,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
     <title>ATV-BD2</title>
 </head>
 <body>
+    <header>
+        <a class="links" href="/index.html">cadastro</a>
+        <a class="links" href="./src/view/users.html">usuarios</a>
+    </header>
+    <table class="tabela">
+        <thead class="cabecalho-tabela">
+            <tr>
+                <th>Nome</th>
+                <th>email</th>
+                <th>idade</th>
+                <th>latitude</th>
+                <th>longetude</th>
+            </tr>
+        </thead>
+        <tbody id="dados">
+        </tbody>
+    </table>
+    <script>
+        function fetchData(){
+        fetch('http://localhost:3000/users')
+        .then(res=>{
+            return res.json();
+        })
+        .then(res=>{
+            displayData(res);
+        })
+        .catch(e=>console.log(e))
+        }
+
+        function displayData(data){
+            const dados=document.getElementById('dados');
+            dados.innerHTML = '';
+
+            data.forEach(i=>{
+                const tr=document.createElement('tr');
+                const nome=document.createElement('td');
+                const email=document.createElement('td');
+                const idade=document.createElement('td');
+                const latitude=document.createElement('td');
+                const longetude=document.createElement('td')
+
+                nome.textContent = i.nome;
+                email.textContent = i.email;
+                idade.textContent = i.idade;
+                latitude.textContent = i.localizacao.coordinates[1];
+                longetude.textContent=i.localizacao.coordinates[0];
+
+                tr.appendChild(nome);
+                tr.appendChild(email);
+                tr.appendChild(idade);
+                tr.appendChild(latitude);
+                tr.appendChild(longetude);
+
+                dados.appendChild(tr);
+            })
+        }
+
+        fetchData()
+        </script>
 </body>
 </html>

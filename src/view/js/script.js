@@ -33,7 +33,7 @@ button.addEventListener('click', (e) => {
     const nome = document.getElementById('nome').value;
     const idade = document.getElementById('idade').value;
     const email = document.getElementById('email').value;
-    const coordinates=[marker.getLatLng.lng,marker.getLatLng.lat];
+    const coordinates=[marker.getLatLng().lng,marker.getLatLng().lat];
 
     const Pessoa = {
         nome,
@@ -61,3 +61,4 @@ button.addEventListener('click', (e) => {
     .then(data => console.log(data))
     .catch(e => console.log('There was a problem with the fetch operation:', e)); 
 });
+
