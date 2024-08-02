@@ -28,6 +28,7 @@
     </table>
     <script>
         function apagar(id) {
+            console.log(id);
             fetch(`http://localhost:3000/users/${id}`, {
                 method: 'DELETE'
             })
@@ -78,6 +79,7 @@
                 longitude.textContent = i.localizacao.coordinates[0];
                 
                 button.appendChild(img);
+                button.dataset.id = i.id;
                 apagar.appendChild(button);
 
                 tr.appendChild(id);
@@ -89,12 +91,15 @@
                 tr.appendChild(apagar);
 
                 dados.appendChild(tr);
-
-                button.addEventListener('click', function() {
-                    apagar(i.id);
-                });
             });
         }
+        document.getElementById('dados').addEventListener('click', function(event) {
+            if (event.target.tagName === 'IMG' && event.target.classList.contains('img-apagar')) {
+                const button = event.target.closest('button');
+                const userId = button.dataset.id;
+                apagar(userId);
+            }
+        });
 
         fetchData();
         </script>
