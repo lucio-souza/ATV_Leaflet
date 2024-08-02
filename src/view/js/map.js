@@ -1,3 +1,5 @@
+let lat;
+let lng;
 
 let map = L.map('map', {
     center: [-6.887698002563706, -38.56015173326553],
@@ -21,12 +23,16 @@ map.on('locationfound', e => {
 map.on('click', l => {
     marker.setLatLng(l.latlng);
     map.setView(l.latlng);
+    lat=marker.getLatLng().lat;
+    lng=marker.getLatLng().lng;
 });
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+
 
 const button = document.getElementById("button");
 
@@ -35,7 +41,7 @@ button.addEventListener('click', (e) => {
     const nome = document.getElementById('nome').value;
     const idade = document.getElementById('idade').value;
     const email = document.getElementById('email').value;
-    const coordinates=[latitude,longetude];
+    const coordinates=[lat,lng];
 
     const Pessoa = {
         nome,
