@@ -1,64 +1,75 @@
-let map = L.map('map', {
-    center: [-6.887698002563706, -38.56015173326553],
-    zoom: 15,
-    minZoom: 14,
-    maxZoom: 16
-});
-
-let marker = L.marker([-6.887698002563706, -38.56015173326553], {
-    draggable: true,
-}).addTo(map);
-
-map.locate();
-
-map.on('locationfound', e => {
-    marker.setLatLng(e.latlng);
-    map.setView(e.latlng);
-});
-
-map.on('click', l => {
-    marker.setLatLng(l.latlng);
-    map.setView(l.latlng);
-});
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-const button = document.getElementById("button");
-
-button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const nome = document.getElementById('nome').value;
-    const idade = document.getElementById('idade').value;
-    const email = document.getElementById('email').value;
-    const coordinates=[marker.getLatLng().lng,marker.getLatLng().lat];
-
-    const Pessoa = {
-        nome,
-        email,
-        idade,
-        "localizacao": {
-            "type": "Point",
-            coordinates
-        }
-    };
-
-    fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Pessoa)
+function apagar(id) {
+    console.log(id);
+    fetch(`http://localhost:3000/users/${id}`, {
+        method: 'DELETE'
     })
     .then(res => {
         if (!res.ok) {
-            throw new Error('Network response was not ok ' + res.statusText);
+            throw new Error('Erro ao deletar o usuário');
         }
-        return res.json();
+        console.log("Usuário deletado com sucesso");
+        fetchData();
     })
-    .then(data => console.log(data))
-    .catch(e => console.log('There was a problem with the fetch operation:', e)); 
+    .catch(e => console.log(e));
+}
+
+function fetchData() {
+    fetch('http://localhost:3000/users')
+        .then(res => res.json())
+        .then(res => {
+            displayData(res);
+        })
+        .catch(e => console.log(e));
+}
+
+function displayData(data) {
+    const dados = document.getElementById('dados');
+    dados.innerHTML = '';
+
+    data.forEach(i => {
+        const tr = document.createElement('tr');
+        
+        const id = document.createElement('td');
+        const nome = document.createElement('td');
+        const email = document.createElement('td');
+        const idade = document.createElement('td');
+        const latitude = document.createElement('td');
+        const longitude = document.createElement('td');
+        const apagar = document.createElement('td');
+        const button = document.createElement('button');
+        const img = document.createElement('img');
+
+        img.classList.add('img-apagar');
+        img.src = './imagens/54324.png';
+        
+        id.textContent = i.id;
+        nome.textContent = i.nome;
+        email.textContent = i.email;
+        idade.textContent = i.idade;
+        latitude.textContent = i.localizacao.coordinates[1];
+        longitude.textContent = i.localizacao.coordinates[0];
+        
+        button.appendChild(img);
+        button.dataset.id = i.id;
+        apagar.appendChild(button);
+
+        tr.appendChild(id);
+        tr.appendChild(nome);
+        tr.appendChild(email);
+        tr.appendChild(idade);
+        tr.appendChild(latitude);
+        tr.appendChild(longitude);
+        tr.appendChild(apagar);
+
+        dados.appendChild(tr);
+    });
+}
+document.getElementById('dados').addEventListener('click', function(event) {
+    if (event.target.tagName === 'IMG' && event.target.classList.contains('img-apagar')) {
+        const button = event.target.closest('button');
+        const userId = button.dataset.id;
+        apagar(userId);
+    }
 });
 
+fetchData();
