@@ -19,3 +19,5 @@ app.use('/users',router);
 app.listen(port, () => {
   console.log(`Servidor online na porta ${port}`);
 });
+
+module.exports=app;

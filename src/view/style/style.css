@@ -72,7 +72,7 @@ header{
 }
 
 .tabela{
-    margin-top: 100px;
+    margin-top: 10px;
     border-collapse: collapse;
     border:solid 1px #101822;
 }
@@ -90,6 +90,36 @@ header{
     border:solid 1px #101822;
     background-color:  #ccd1d1 ;
     text-align: center;
+}
+
+.pesquisar {
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    margin-left: 430px;
+}
+.inp-pesquisar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px 0 0 50px;
+    width: 350px;
+    height: 30px;
+}
+button {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+}
+.btn-enviar{
+    background-color: #6482AD;
+    border-radius:0% 50% 50% 0%;
+    width: 40px; 
+    height: 48px; 
+}
+.img-btn {
+    width: 30px; 
+    height: 30px; 
+
 }
 
 .img-apagar{

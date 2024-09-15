@@ -11,7 +11,7 @@ const createUser=async(req,res)=>{
 const findUsers=async(req,res)=>{
     try{
         const users=await User.findAll();
-        res.json(users)
+        res.status(200).json(users)
     }catch(e){
         console.log(e);
     }
@@ -19,7 +19,7 @@ const findUsers=async(req,res)=>{
 const findUserById=async(req,res)=>{
     try {
         const user=await User.findByPk(req.params.id);
-        res.status(201).json(user);
+        res.status(200).json(user);
     } catch (error) {
         res.status(404).json({error:"usuario não existe"})
     }

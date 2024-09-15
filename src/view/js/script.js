@@ -1,5 +1,4 @@
 function apagar(id) {
-    console.log(id);
     fetch(`http://localhost:3000/users/${id}`, {
         method: 'DELETE'
     })
@@ -12,6 +11,17 @@ function apagar(id) {
     })
     .catch(e => console.log(e));
 }
+
+const button=document.getElementById('btn-enviar');
+button.addEventListener('click',()=>{
+        const id=document.getElementById('id').value;
+
+        fetch(`http://localhost:3000/users/${id}`)
+        .then(res=>res.json())
+        .then(res=>{
+            displayData([res]);
+        })
+    })
 
 function fetchData() {
     fetch('http://localhost:3000/users')
