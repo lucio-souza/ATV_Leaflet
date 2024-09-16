@@ -126,3 +126,8 @@ button {
     width: 30px;
     height: 30px;
 }
+
+#msg{
+    margin-top:60px;
+    text-align: center;
+}

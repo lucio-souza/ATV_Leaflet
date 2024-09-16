@@ -28,9 +28,7 @@ describe('Testar formulário de cadastro', () => {
   it('Verifica se os campos são obrigatórios', () => {
     cy.get('#button').click();
 
-    cy.get('#nome').should('have.value', '');
-    cy.get('#idade').should('have.value', '');
-    cy.get('#email').should('have.value', '');
+    cy.get('#msg').should('contain.text', 'Todos os campos são obrigatórios!')
   });
 
   it('apagando usuario', () => {

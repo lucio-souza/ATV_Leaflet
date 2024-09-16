@@ -45,6 +45,11 @@ button.addEventListener('click', (e) => {
     const email = document.getElementById('email').value;
     const coordinates=[lat,lng];
 
+    if(!nome || !idade || !email){
+        const msg=document.getElementById('msg');
+        msg.textContent='Todos os campos são obrigatórios!'
+    }else{
+
     const Pessoa = {
         nome,
         email,
@@ -70,4 +75,4 @@ button.addEventListener('click', (e) => {
     })
     .then(data => console.log(data))
     .catch(e => console.log('There was a problem with the fetch operation:', e)); 
-});
+}});
