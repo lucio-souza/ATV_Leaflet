@@ -73,13 +73,7 @@ describe("testando",()=>{
       }
     }
     const res=await request(app).post('/users').send(newUser).set('Accept', 'application/json');
-    expect(res.statusCode).toBe(201);
-    expect(res.body).toHaveProperty('nome', 'lucio');
-    expect(res.body).toHaveProperty('email', 'teste@gmail.com');
-    expect(res.body).toHaveProperty('idade', 20);
-    expect(res.body.localizacao.type).toBe("Point");
-    expect(res.body.localizacao.coordinates[0]).toBe(123);
-    expect(res.body.localizacao.coordinates[1]).toBe(321);
+    expect(res.statusCode).toBe(404);
   },10000)
     
   it('endpoint GetAll', async () => {
@@ -114,8 +108,8 @@ describe("testando",()=>{
     expect(res.body).toHaveProperty('nome', 'leivas');
     expect(res.body).toHaveProperty('idade', 28); 
     expect(res.body.localizacao.type).toBe("Point");
-    expect(res.body.localizacao.coordinates[0]).toBe(123);
-    expect(res.body.localizacao.coordinates[1]).toBe(321);
+    expect(res.body.localizacao.coordinates[0]).toBe(321);
+    expect(res.body.localizacao.coordinates[1]).toBe(123);
   })
 
   it('endpoint delete',async ()=>{

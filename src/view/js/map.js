@@ -17,6 +17,8 @@ map.locate();
 map.on('locationfound', e => {
     marker.setLatLng(e.latlng);
     map.setView(e.latlng);
+    lat=marker.getLatLng().lat;
+    lng=marker.getLatLng().lng;
 });
 
 

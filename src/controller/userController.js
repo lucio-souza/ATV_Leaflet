@@ -24,6 +24,17 @@ const findUserById=async(req,res)=>{
         res.status(404).json({error:"usuario não existe"})
     }
 }
+const findUserByemail=async(req,res)=>{
+    const {email}=req.params
+    try {
+        const user=await User.findOne({where:{email}});
+        
+        
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(404).json({error:email})
+    }
+}
 const updateUser=async(req,res)=>{
     const {nome,idade,localizacao}=req.body;
     try {
@@ -47,4 +58,4 @@ const deleteUser=async(req,res)=>{
     }
 }
 
-module.exports={createUser,findUsers,findUserById,updateUser,deleteUser};
+module.exports={createUser,findUsers,findUserById,updateUser,deleteUser,findUserByemail};

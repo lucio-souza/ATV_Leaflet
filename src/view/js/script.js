@@ -14,9 +14,9 @@ function apagar(id) {
 
 const button=document.getElementById('btn-enviar');
 button.addEventListener('click',()=>{
-        const id=document.getElementById('id').value;
+        const email=document.getElementById('email').value;
 
-        fetch(`http://localhost:3000/users/${id}`)
+        fetch(`http://localhost:3000/users/email/${email}`)
         .then(res=>res.json())
         .then(res=>{
             displayData([res]);
