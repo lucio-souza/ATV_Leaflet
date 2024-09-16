@@ -67,12 +67,22 @@ button.addEventListener('click', (e) => {
         },
         body: JSON.stringify(Pessoa)
     })
+    .then(data => {
+        const msg=document.getElementById('msg');
+        if(data.status===404){
+            msg.style.color='#ff0000';
+            msg.textContent='Já existe um usuario com esse CPF';
+        }else{
+        msg.style.color='#057708';
+        msg.textContent='Pedido criado com sucesso';
+        }
+        console.log(`${data} oi`);})
     .then(res => {
         if (!res.ok) {
             throw new Error('Network response was not ok ' + res.statusText);
         }
         return res.json();
     })
-    .then(data => console.log(data))
+    
     .catch(e => console.log('There was a problem with the fetch operation:', e)); 
 }});

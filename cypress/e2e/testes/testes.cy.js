@@ -4,8 +4,34 @@ describe('Testar formulário de cadastro', () => {
     cy.visit('http://127.0.0.1:5500/index.html'); // URL correta do seu ambiente local
   });
 
-  it('Verifica se o mapa é carregado', () => {
-    cy.get('#map').should('exist');
+  it('Verifica se é possivel cadastrar 2 usuarios com mesmo enail', () => {
+    cy.get('#nome')
+      .type('João da Silva')
+      .should('have.value', 'João da Silva');
+
+    cy.get('#idade')
+      .type('30')
+      .should('have.value', '30');
+
+    cy.get('#email')
+      .type('joao.silva@example.com')
+      .should('have.value', 'joao.silva@example.com');
+
+    cy.get('#button').click();
+
+    cy.get('#nome')
+      .type('João da Silva')
+      .should('have.value', 'João da Silva');
+
+    cy.get('#idade')
+      .type('30')
+      .should('have.value', '30');
+
+    cy.get('#email')
+      .type('joao.silva@example.com')
+      .should('have.value', 'joao.silva@example.com');
+
+    cy.get('#button').click();
   });
 
   it('Preenche o formulário e envia', () => {

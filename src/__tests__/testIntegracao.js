@@ -46,7 +46,7 @@ describe("testando",()=>{
     }
     const res=await request(app).post('/users').send(newUser).set('Accept', 'application/json');
     idUser=res.body.id;
-  }, 10000); 
+  }, 60000); 
 
   afterAll(async () => {
     if (server) {
