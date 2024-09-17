@@ -16,14 +16,6 @@ const findUsers=async(req,res)=>{
         console.log(e);
     }
 }
-const findUserById=async(req,res)=>{
-    try {
-        const user=await User.findByPk(req.params.id);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(404).json({error:"usuario não existe"})
-    }
-}
 const findUserByemail=async(req,res)=>{
     const {email}=req.params
     try {
@@ -58,4 +50,4 @@ const deleteUser=async(req,res)=>{
     }
 }
 
-module.exports={createUser,findUsers,findUserById,updateUser,deleteUser,findUserByemail};
+module.exports={createUser,findUsers,updateUser,deleteUser,findUserByemail};

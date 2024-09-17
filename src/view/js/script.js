@@ -16,7 +16,7 @@ const button=document.getElementById('btn-enviar');
 button.addEventListener('click',()=>{
         const email=document.getElementById('email').value;
 
-        fetch(`http://localhost:3000/users/email/${email}`)
+        fetch(`http://localhost:3000/users/${email}`)
         .then(res=>res.json())
         .then(res=>{
             displayData([res]);

@@ -1,5 +1,5 @@
-let lat;
-let lng;
+let lat=-38.56015173326553;
+let lng=-6.887698002563706;
 
 let map = L.map('map', {
     center: [-6.887698002563706, -38.56015173326553],
@@ -71,10 +71,10 @@ button.addEventListener('click', (e) => {
         const msg=document.getElementById('msg');
         if(data.status===404){
             msg.style.color='#ff0000';
-            msg.textContent='Já existe um usuario com esse CPF';
+            msg.textContent='Já existe um usuario com esse email';
         }else{
         msg.style.color='#057708';
-        msg.textContent='Pedido criado com sucesso';
+        msg.textContent='Usuario criado com sucesso';
         }
         console.log(`${data} oi`);})
     .then(res => {

@@ -9,6 +9,7 @@ describe("testando",()=>{
   let sequelize;
   let port=8080;
   let idUser;
+  let emailUser;
 
   beforeAll(async () => {
     container = await new GenericContainer('postgres')
@@ -46,6 +47,7 @@ describe("testando",()=>{
     }
     const res=await request(app).post('/users').send(newUser).set('Accept', 'application/json');
     idUser=res.body.id;
+    emailUser=res.body.email;
   }, 60000); 
 
   afterAll(async () => {
@@ -81,8 +83,8 @@ describe("testando",()=>{
     expect(res.statusCode).toBe(200);
   },10000);
 
-  it('endpoint GetById',async()=>{
-    const res = await request(app).get(`/users/${idUser}`);
+  it('endpoint GetByemail',async()=>{
+    const res = await request(app).get(`/users/${emailUser}`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('nome','lucio');
     expect(res.body).toHaveProperty('email','teste@gmail.com');
