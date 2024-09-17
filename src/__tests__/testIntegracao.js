@@ -64,7 +64,7 @@ describe("testando",()=>{
     }
   });
 
-  it('Endpoint Post',async()=>{
+  it('verificando se pode inserir 2 usuários com o mesmo email',async()=>{
     const newUser={
       nome:"lucio",
       email:"teste@gmail.com",
@@ -78,12 +78,12 @@ describe("testando",()=>{
     expect(res.statusCode).toBe(404);
   },10000)
     
-  it('endpoint GetAll', async () => {
+  it('verificando se todos os usuários são retornados', async () => {
     const res = await request(app).get('/users');
     expect(res.statusCode).toBe(200);
   },10000);
 
-  it('endpoint GetByemail',async()=>{
+  it('verificando se um usuário especifico é retornado',async()=>{
     const res = await request(app).get(`/users/${emailUser}`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('nome','lucio');
@@ -95,7 +95,7 @@ describe("testando",()=>{
     }));
   })
 
-  it('endpoint update',async ()=>{
+  it('verificando se é possivel atualizar um usuário especifico',async ()=>{
     const userAtualizado={
       nome:"leivas",
       idade:28,
@@ -114,7 +114,7 @@ describe("testando",()=>{
     expect(res.body.localizacao.coordinates[1]).toBe(123);
   })
 
-  it('endpoint delete',async ()=>{
+  it('verificando se é possivel apagar um usuário',async ()=>{
     const res=await request(app).delete(`/users/${idUser}`)
     expect(res.statusCode).toBe(200);
   })
