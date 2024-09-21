@@ -5,7 +5,11 @@ const createUser=async(req,res)=>{
     const user=await User.create(req.body);
     res.status(201).json(user);
     }catch(e){
-        res.status(404).send("error ao criar usuario");
+        if (e.name === 'SequelizeUniqueConstraintError') {
+            res.status(400).json({ error: 'Email já está em uso.' });
+          } else {
+            res.status(500).json({ error: 'Erro interno do servidor.' });
+          }
     }
 }
 const findUsers=async(req,res)=>{

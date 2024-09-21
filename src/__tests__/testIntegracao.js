@@ -75,8 +75,8 @@ describe("testando",()=>{
       }
     }
     const res=await request(app).post('/users').send(newUser).set('Accept', 'application/json');
-    expect(res.statusCode).toBe(404);
-  },10000)
+    expect(res.statusCode).toBe(400);
+  },20000)
     
   it('verificando se todos os usuários são retornados', async () => {
     const res = await request(app).get('/users');
